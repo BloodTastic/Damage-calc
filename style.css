@@ -19,3 +19,18 @@ input{
     margin-top:30px;
     font-size:24px;
 }
+#pasteArea{
+    width:500px;
+    max-width:90%;
+    margin:20px auto;
+    padding:40px;
+    border:3px dashed #66ccff;
+    border-radius:12px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+#pasteArea:focus{
+    outline:none;
+    border-color:#00ff99;
+}
