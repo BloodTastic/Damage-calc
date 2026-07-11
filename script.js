@@ -1,16 +1,41 @@
 const upload = document.getElementById("imageUpload");
+const pasteArea = document.getElementById("pasteArea");
 
-upload.addEventListener("change", async function(){
-
-    const file = upload.files[0];
-
-    if(!file) return;
+async function processImage(image) {
 
     const result = await Tesseract.recognize(
-        file,
+        image,
         "eng"
     );
 
     console.log(result.data.text);
+
+}
+
+upload.addEventListener("change", () => {
+
+    const file = upload.files[0];
+
+    if(file){
+        processImage(file);
+    }
+
+});
+
+document.addEventListener("paste", (event)=>{
+
+    const items = event.clipboardData.items;
+
+    for(const item of items){
+
+        if(item.type.startsWith("image")){
+
+            const file = item.getAsFile();
+
+            processImage(file);
+
+        }
+
+    }
 
 });
