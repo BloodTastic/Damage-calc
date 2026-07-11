@@ -1,32 +1,33 @@
-body {
-    background: #111;
-    color: white;
+body{
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 40px;
+    background:#202124;
+    color:white;
+    text-align:center;
+    padding:40px;
 }
 
-h1 {
-    color: #66ccff;
+#pasteArea{
+    width:500px;
+    margin:auto;
+    padding:40px;
+    border:3px dashed #4aa3ff;
+    border-radius:10px;
+    cursor:pointer;
+    background:#2b2b2b;
 }
 
-#pasteArea {
-    width: 500px;
-    max-width: 90%;
-    margin: 20px auto;
-    padding: 40px;
-    border: 3px dashed #66ccff;
-    border-radius: 12px;
-    font-size: 22px;
-    cursor: pointer;
+#pasteArea:focus{
+    outline:none;
+    border-color:#00ff99;
 }
 
-#pasteArea:focus {
-    outline: none;
-    border-color: #00ff99;
+#preview{
+    display:none;
+    margin-top:20px;
+    max-width:500px;
+    border-radius:10px;
 }
 
-#results {
-    margin-top: 30px;
-    font-size: 24px;
+#results{
+    margin-top:30px;
 }
