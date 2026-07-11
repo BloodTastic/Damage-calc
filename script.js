@@ -1,7 +1,8 @@
-const upload = document.getElementById("imageUpload");
 const pasteArea = document.getElementById("pasteArea");
 
 async function processImage(image) {
+
+    console.log("Reading image...");
 
     const result = await Tesseract.recognize(
         image,
@@ -11,16 +12,6 @@ async function processImage(image) {
     console.log(result.data.text);
 
 }
-
-upload.addEventListener("change", () => {
-
-    const file = upload.files[0];
-
-    if(file){
-        processImage(file);
-    }
-
-});
 
 document.addEventListener("paste", (event)=>{
 
