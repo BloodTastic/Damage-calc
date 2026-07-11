@@ -495,19 +495,18 @@ function setStat(input, statusElement, value) {
 calculateButton.addEventListener("click", function() {
 
     const atk = parseFloat(atkInput.value);
+    const skillDamagePercent = parseFloat(skillDamageInput.value);
+    const critRatePercent = parseFloat(critRateInput.value);
+    const critDamagePercent = parseFloat(critDamageInput.value);
 
-    const skillDamage = parseFloat(skillDamageInput.value);
 
-    const critRate = parseFloat(critRateInput.value);
-
-    const critDamage = parseFloat(critDamageInput.value);
-
+    // Make sure all four stats contain valid numbers.
 
     if (
         Number.isNaN(atk) ||
-        Number.isNaN(skillDamage) ||
-        Number.isNaN(critRate) ||
-        Number.isNaN(critDamage)
+        Number.isNaN(skillDamagePercent) ||
+        Number.isNaN(critRatePercent) ||
+        Number.isNaN(critDamagePercent)
     ) {
 
         scoreElement.textContent = "Missing stats";
@@ -520,24 +519,56 @@ calculateButton.addEventListener("click", function() {
     }
 
 
-    /*
-        IMPORTANT:
+    // Convert percentage values to decimals.
+    //
+    // Examples:
+    // 166% becomes 1.66
+    // 87% becomes 0.87
+    // 178% becomes 1.78
 
-        We still need your exact damage score formula.
+    const skillDamage = skillDamagePercent / 100;
 
-        For now, we only confirm that all four values
-        were detected successfully.
-    */
+    const critDamage = critDamagePercent / 100;
 
 
-    scoreElement.textContent = "Ready ✓";
+    // Convert Crit Rate to a decimal and cap it at 1.00.
+    //
+    // Examples:
+    // 50%  becomes 0.50
+    // 87%  becomes 0.87
+    // 100% becomes 1.00
+    // 140% also becomes 1.00
+
+    const critRate = Math.min(
+        Math.max(critRatePercent / 100, 0),
+        1
+    );
+
+
+    // Formula:
+    //
+    // ATK × (1 + Skill Damage)
+    //     × (1 + Crit Rate × Crit Damage)
+
+    const power =
+        atk *
+        (1 + skillDamage) *
+        (1 + critRate * critDamage);
+
+
+    // Display the final result as a rounded whole number.
+
+    scoreElement.textContent =
+        Math.round(power).toLocaleString();
+
 
     showStatus(
-        "All four stats are ready. Next we'll add your exact scoring formula."
+        "Calculation complete. Crit Rate used: " +
+        (critRate * 100).toFixed(0) +
+        "%."
     );
 
 });
-
 
 // ------------------------------
 // STATUS MESSAGE
