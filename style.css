@@ -1,36 +1,32 @@
-body{
-    background:#111;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-    margin-top:40px;
+body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
 }
 
-h1{
-    color:#66ccff;
+h1 {
+    color: #66ccff;
 }
 
-input{
-    margin:20px;
-    font-size:18px;
+#pasteArea {
+    width: 500px;
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 40px;
+    border: 3px dashed #66ccff;
+    border-radius: 12px;
+    font-size: 22px;
+    cursor: pointer;
 }
 
-#results{
-    margin-top:30px;
-    font-size:24px;
-}
-#pasteArea{
-    width:500px;
-    max-width:90%;
-    margin:20px auto;
-    padding:40px;
-    border:3px dashed #66ccff;
-    border-radius:12px;
-    font-size:22px;
-    cursor:pointer;
+#pasteArea:focus {
+    outline: none;
+    border-color: #00ff99;
 }
 
-#pasteArea:focus{
-    outline:none;
-    border-color:#00ff99;
+#results {
+    margin-top: 30px;
+    font-size: 24px;
 }
