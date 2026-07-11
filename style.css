@@ -1,0 +1,21 @@
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    margin-top:40px;
+}
+
+h1{
+    color:#66ccff;
+}
+
+input{
+    margin:20px;
+    font-size:18px;
+}
+
+#results{
+    margin-top:30px;
+    font-size:24px;
+}
