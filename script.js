@@ -1,24 +1,33 @@
-document.addEventListener("paste", function(event) {
+const pasteArea = document.getElementById("pasteArea");
+const preview = document.getElementById("preview");
 
-    console.log("PASTE DETECTED");
+pasteArea.focus();
+
+document.addEventListener("paste", function(event){
 
     const items = event.clipboardData.items;
 
-    for (let item of items) {
+    for(let i = 0; i < items.length; i++){
 
-        console.log("Clipboard item:", item.type);
+        const item = items[i];
 
-        if (item.type.startsWith("image")) {
-
-            console.log("IMAGE FOUND");
+        if(item.type.indexOf("image") !== -1){
 
             const file = item.getAsFile();
 
-            const img = document.createElement("img");
-            img.src = URL.createObjectURL(file);
-            img.style.width = "400px";
+            const reader = new FileReader();
 
-            document.body.appendChild(img);
+            reader.onload = function(e){
+
+                preview.src = e.target.result;
+                preview.style.display = "block";
+
+            };
+
+            reader.readAsDataURL(file);
+
         }
+
     }
+
 });
