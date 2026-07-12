@@ -9,206 +9,589 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Damage Calculator</title>
+    <title>Damage Calculator - Build Comparison</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="calculator">
+    <main class="app">
 
-        <h1>Damage Calculator</h1>
+        <header class="page-header">
 
-        <p class="subtitle">
-            Paste or upload your stats screenshot to automatically detect your values.
-        </p>
-
-
-        <!-- IMAGE INPUT AREA -->
-
-        <div id="pasteArea" class="paste-area" tabindex="0">
-
-            <div class="paste-icon">📋</div>
-
-            <h2>Paste Screenshot</h2>
+            <h1>Damage Calculator</h1>
 
             <p>
-                Click here, then press
-                <strong>Ctrl + V</strong>
+                Paste or upload two screenshots to compare builds side by side.
             </p>
 
-            <p class="or-text">or</p>
+        </header>
 
-            <button id="uploadButton" type="button">
-                Choose Image
-            </button>
 
-            <input
-                type="file"
-                id="fileInput"
-                accept="image/*"
-                hidden
+        <!-- TWO BUILD CALCULATORS -->
+
+        <div class="comparison-grid">
+
+
+            <!-- ============================== -->
+            <!-- BUILD A -->
+            <!-- ============================== -->
+
+            <section class="build-card" id="buildACard">
+
+                <div class="build-title build-a-title">
+                    <h2>Build A</h2>
+                </div>
+
+
+                <!-- IMAGE INPUT -->
+
+                <div
+                    id="pasteAreaA"
+                    class="paste-area"
+                    tabindex="0"
+                >
+
+                    <div class="paste-icon">📋</div>
+
+                    <h3>Paste Screenshot</h3>
+
+                    <p>
+                        Click here, then press
+                        <strong>Ctrl + V</strong>
+                    </p>
+
+                    <p class="or-text">or</p>
+
+                    <button
+                        id="uploadButtonA"
+                        class="upload-button"
+                        type="button"
+                    >
+                        Choose Image
+                    </button>
+
+                    <input
+                        type="file"
+                        id="fileInputA"
+                        accept="image/*"
+                        hidden
+                    >
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="statusA"
+                    class="status hidden"
+                >
+                    Waiting for image...
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div
+                    id="progressContainerA"
+                    class="progress-container hidden"
+                >
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBarA"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                    <p id="progressTextA">
+                        Reading image... 0%
+                    </p>
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div
+                    id="previewSectionA"
+                    class="preview-section hidden"
+                >
+
+                    <img
+                        id="previewA"
+                        alt="Build A screenshot"
+                    >
+
+                </div>
+
+
+                <!-- STATS -->
+
+                <div class="stats-section">
+
+                    <h3>Detected Stats</h3>
+
+                    <p class="stats-help">
+                        You can edit any incorrectly detected value.
+                    </p>
+
+
+                    <div class="stat-row">
+
+                        <label for="atkA">
+                            ATK
+                        </label>
+
+                        <input
+                            type="number"
+                            id="atkA"
+                            placeholder="Not detected"
+                        >
+
+                        <span
+                            id="atkStatusA"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="skillDamageA">
+                            Skill Damage
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="skillDamageA"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="skillDamageStatusA"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="critRateA">
+                            Crit Rate
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="critRateA"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="critRateStatusA"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="critDamageA">
+                            Crit Damage
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="critDamageA"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="critDamageStatusA"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <button
+                        id="calculateButtonA"
+                        class="calculate-button"
+                        type="button"
+                    >
+                        Calculate Build A
+                    </button>
+
+                </div>
+
+
+                <!-- SCORE -->
+
+                <div class="score-section">
+
+                    <h3>Power Score</h3>
+
+                    <div
+                        id="scoreA"
+                        class="score"
+                    >
+                        —
+                    </div>
+
+                    <p
+                        id="critUsedA"
+                        class="crit-used"
+                    ></p>
+
+                </div>
+
+
+                <!-- OCR DEBUG -->
+
+                <details class="ocr-details">
+
+                    <summary>
+                        Show text detected by OCR
+                    </summary>
+
+                    <pre id="ocrOutputA">
+No image processed yet.
+                    </pre>
+
+                </details>
+
+            </section>
+
+
+            <!-- ============================== -->
+            <!-- BUILD B -->
+            <!-- ============================== -->
+
+            <section class="build-card" id="buildBCard">
+
+                <div class="build-title build-b-title">
+                    <h2>Build B</h2>
+                </div>
+
+
+                <!-- IMAGE INPUT -->
+
+                <div
+                    id="pasteAreaB"
+                    class="paste-area"
+                    tabindex="0"
+                >
+
+                    <div class="paste-icon">📋</div>
+
+                    <h3>Paste Screenshot</h3>
+
+                    <p>
+                        Click here, then press
+                        <strong>Ctrl + V</strong>
+                    </p>
+
+                    <p class="or-text">or</p>
+
+                    <button
+                        id="uploadButtonB"
+                        class="upload-button"
+                        type="button"
+                    >
+                        Choose Image
+                    </button>
+
+                    <input
+                        type="file"
+                        id="fileInputB"
+                        accept="image/*"
+                        hidden
+                    >
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div
+                    id="statusB"
+                    class="status hidden"
+                >
+                    Waiting for image...
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div
+                    id="progressContainerB"
+                    class="progress-container hidden"
+                >
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBarB"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                    <p id="progressTextB">
+                        Reading image... 0%
+                    </p>
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div
+                    id="previewSectionB"
+                    class="preview-section hidden"
+                >
+
+                    <img
+                        id="previewB"
+                        alt="Build B screenshot"
+                    >
+
+                </div>
+
+
+                <!-- STATS -->
+
+                <div class="stats-section">
+
+                    <h3>Detected Stats</h3>
+
+                    <p class="stats-help">
+                        You can edit any incorrectly detected value.
+                    </p>
+
+
+                    <div class="stat-row">
+
+                        <label for="atkB">
+                            ATK
+                        </label>
+
+                        <input
+                            type="number"
+                            id="atkB"
+                            placeholder="Not detected"
+                        >
+
+                        <span
+                            id="atkStatusB"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="skillDamageB">
+                            Skill Damage
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="skillDamageB"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="skillDamageStatusB"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="critRateB">
+                            Crit Rate
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="critRateB"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="critRateStatusB"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <div class="stat-row">
+
+                        <label for="critDamageB">
+                            Crit Damage
+                        </label>
+
+                        <div class="percent-input">
+
+                            <input
+                                type="number"
+                                id="critDamageB"
+                                placeholder="Not detected"
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                        <span
+                            id="critDamageStatusB"
+                            class="stat-status"
+                        >—</span>
+
+                    </div>
+
+
+                    <button
+                        id="calculateButtonB"
+                        class="calculate-button"
+                        type="button"
+                    >
+                        Calculate Build B
+                    </button>
+
+                </div>
+
+
+                <!-- SCORE -->
+
+                <div class="score-section">
+
+                    <h3>Power Score</h3>
+
+                    <div
+                        id="scoreB"
+                        class="score"
+                    >
+                        —
+                    </div>
+
+                    <p
+                        id="critUsedB"
+                        class="crit-used"
+                    ></p>
+
+                </div>
+
+
+                <!-- OCR DEBUG -->
+
+                <details class="ocr-details">
+
+                    <summary>
+                        Show text detected by OCR
+                    </summary>
+
+                    <pre id="ocrOutputB">
+No image processed yet.
+                    </pre>
+
+                </details>
+
+            </section>
+
+        </div>
+
+
+        <!-- ============================== -->
+        <!-- COMPARISON RESULT -->
+        <!-- ============================== -->
+
+        <section
+            id="comparisonResult"
+            class="comparison-result"
+        >
+
+            <h2>Build Comparison</h2>
+
+            <div
+                id="winnerText"
+                class="winner-text"
             >
-
-        </div>
-
-
-        <!-- STATUS -->
-
-        <div id="status" class="status hidden">
-            Waiting for image...
-        </div>
-
-
-        <!-- PROGRESS -->
-
-        <div id="progressContainer" class="progress-container hidden">
-
-            <div class="progress-track">
-                <div id="progressBar" class="progress-bar"></div>
+                Calculate both builds to compare them.
             </div>
 
-            <p id="progressText">
-                Reading image... 0%
+            <div
+                id="differenceText"
+                class="difference-text"
+            ></div>
+
+        </section>
+
+
+        <!-- FORMULA EXPLANATION -->
+
+        <section class="formula-section">
+
+            <h2>How Power Is Calculated</h2>
+
+            <p class="formula">
+                ATK × (1 + Skill Damage) ×
+                (1 + Crit Rate × Crit Damage)
             </p>
 
-        </div>
-
-
-        <!-- IMAGE PREVIEW -->
-
-        <section id="previewSection" class="preview-section hidden">
-
-            <h2>Screenshot Preview</h2>
-
-            <img
-                id="preview"
-                alt="Uploaded stats screenshot"
-            >
-
-        </section>
-
-
-        <!-- DETECTED STATS -->
-
-        <section id="statsSection" class="stats-section">
-
-            <h2>Detected Stats</h2>
-
-            <p class="stats-help">
-                Values are editable in case OCR reads something incorrectly.
+            <p>
+                Crit Rate is capped at 100% for the calculation.
+                A Crit Rate of 87% uses 0.87, while 123% uses 1.00.
             </p>
 
-
-            <div class="stat-row">
-
-                <label for="atk">
-                    ATK
-                </label>
-
-                <input
-                    type="number"
-                    id="atk"
-                    placeholder="Not detected"
-                >
-
-                <span id="atkStatus" class="stat-status">—</span>
-
-            </div>
-
-
-            <div class="stat-row">
-
-                <label for="skillDamage">
-                    Skill Damage
-                </label>
-
-                <input
-                    type="number"
-                    id="skillDamage"
-                    placeholder="Not detected"
-                >
-
-                <span class="percent-sign">%</span>
-
-                <span id="skillDamageStatus" class="stat-status">—</span>
-
-            </div>
-
-
-            <div class="stat-row">
-
-                <label for="critRate">
-                    Crit Rate
-                </label>
-
-                <input
-                    type="number"
-                    id="critRate"
-                    placeholder="Not detected"
-                >
-
-                <span class="percent-sign">%</span>
-
-                <span id="critRateStatus" class="stat-status">—</span>
-
-            </div>
-
-
-            <div class="stat-row">
-
-                <label for="critDamage">
-                    Crit Damage
-                </label>
-
-                <input
-                    type="number"
-                    id="critDamage"
-                    placeholder="Not detected"
-                >
-
-                <span class="percent-sign">%</span>
-
-                <span id="critDamageStatus" class="stat-status">—</span>
-
-            </div>
-
-
-            <button id="calculateButton" type="button">
-                Calculate Score
-            </button>
-
         </section>
-
-
-        <!-- SCORE -->
-
-        <section class="score-section">
-
-            <h2>Score</h2>
-
-            <div id="score">—</div>
-
-        </section>
-
-
-        <!-- OCR DEBUG OUTPUT -->
-
-        <details class="ocr-details">
-
-            <summary>
-                Show text detected by OCR
-            </summary>
-
-            <pre id="ocrOutput">No image processed yet.</pre>
-
-        </details>
 
     </main>
 
 
-    <!-- TESSERACT OCR LIBRARY -->
+    <!-- TESSERACT OCR -->
 
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
