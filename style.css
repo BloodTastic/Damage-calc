@@ -13,35 +13,85 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.calculator {
+.app {
     width: 100%;
-    max-width: 750px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-h1 {
-    margin-bottom: 8px;
-    text-align: center;
-    font-size: 36px;
-}
 
-.subtitle {
+/* PAGE HEADER */
+
+.page-header {
     margin-bottom: 30px;
     text-align: center;
+}
+
+.page-header h1 {
+    margin: 0 0 10px;
+    font-size: 38px;
+}
+
+.page-header p {
+    margin: 0;
     color: #b9bec8;
-    line-height: 1.5;
+    font-size: 17px;
+}
+
+
+/* TWO-COLUMN LAYOUT */
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+
+/* BUILD CARDS */
+
+.build-card {
+    min-width: 0;
+    overflow: hidden;
+
+    background: #202329;
+
+    border: 1px solid #343841;
+    border-radius: 16px;
+}
+
+.build-title {
+    padding: 15px;
+    text-align: center;
+}
+
+.build-title h2 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.build-a-title {
+    background: #293832;
+    border-bottom: 2px solid #39e6ad;
+}
+
+.build-b-title {
+    background: #292f3d;
+    border-bottom: 2px solid #65a9ff;
 }
 
 
 /* PASTE AREA */
 
 .paste-area {
-    padding: 35px 20px;
+    margin: 20px;
+    padding: 28px 15px;
 
     background: #22252b;
 
     border: 3px dashed #39e6ad;
-    border-radius: 16px;
+    border-radius: 14px;
 
     text-align: center;
     cursor: pointer;
@@ -52,11 +102,25 @@ h1 {
         transform 0.2s;
 }
 
+#pasteAreaB {
+    border-color: #65a9ff;
+}
+
 .paste-area:hover,
 .paste-area:focus {
     background: #282c33;
-    border-color: #68f5c7;
     outline: none;
+    transform: translateY(-1px);
+}
+
+#pasteAreaA:hover,
+#pasteAreaA:focus {
+    border-color: #68f5c7;
+}
+
+#pasteAreaB:hover,
+#pasteAreaB:focus {
+    border-color: #8bc0ff;
 }
 
 .paste-area.dragging {
@@ -65,21 +129,21 @@ h1 {
 }
 
 .paste-icon {
-    margin-bottom: 10px;
-    font-size: 42px;
+    margin-bottom: 5px;
+    font-size: 38px;
 }
 
-.paste-area h2 {
+.paste-area h3 {
     margin: 5px 0 10px;
 }
 
 .paste-area p {
-    margin: 8px 0;
+    margin: 7px 0;
     color: #c9cdd4;
 }
 
 .or-text {
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 
@@ -87,15 +151,10 @@ h1 {
 /* BUTTONS */
 
 button {
-    padding: 12px 22px;
-
     border: none;
     border-radius: 8px;
 
-    background: #39e6ad;
-    color: #101411;
-
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 
     cursor: pointer;
@@ -106,18 +165,33 @@ button {
 }
 
 button:hover {
-    background: #68f5c7;
     transform: translateY(-1px);
+}
+
+.upload-button {
+    padding: 11px 20px;
+
+    background: #39e6ad;
+    color: #101411;
+}
+
+#uploadButtonB {
+    background: #65a9ff;
+}
+
+.upload-button:hover {
+    filter: brightness(1.1);
 }
 
 
 /* STATUS */
 
 .status {
-    margin-top: 20px;
-    padding: 12px;
+    margin: 0 20px 18px;
+    padding: 11px;
 
     background: #252931;
+
     border-radius: 8px;
 
     text-align: center;
@@ -128,12 +202,12 @@ button:hover {
 /* PROGRESS */
 
 .progress-container {
-    margin-top: 20px;
+    margin: 0 20px 18px;
 }
 
 .progress-track {
     width: 100%;
-    height: 14px;
+    height: 13px;
 
     overflow: hidden;
 
@@ -150,8 +224,12 @@ button:hover {
     transition: width 0.2s;
 }
 
-#progressText {
-    margin-top: 8px;
+#progressBarB {
+    background: #65a9ff;
+}
+
+.progress-container p {
+    margin: 8px 0 0;
 
     text-align: center;
     color: #b9bec8;
@@ -161,18 +239,18 @@ button:hover {
 /* IMAGE PREVIEW */
 
 .preview-section {
-    margin-top: 30px;
+    margin: 0 20px 20px;
     text-align: center;
 }
 
-#preview {
+.preview-section img {
     display: block;
 
     width: auto;
     max-width: 100%;
-    max-height: 550px;
+    max-height: 400px;
 
-    margin: 15px auto 0;
+    margin: 0 auto;
 
     border: 1px solid #3b4049;
     border-radius: 10px;
@@ -182,49 +260,52 @@ button:hover {
 /* STATS */
 
 .stats-section {
-    margin-top: 30px;
-    padding: 25px;
+    margin: 20px;
+    padding: 20px;
 
-    background: #22252b;
+    background: #272a31;
 
-    border: 1px solid #343841;
-    border-radius: 14px;
+    border: 1px solid #383d47;
+    border-radius: 12px;
 }
 
-.stats-section h2 {
-    margin-top: 0;
+.stats-section h3 {
+    margin: 0 0 5px;
     text-align: center;
+    font-size: 21px;
 }
 
 .stats-help {
-    margin-bottom: 25px;
+    margin: 0 0 20px;
 
     text-align: center;
     color: #aeb4be;
+    font-size: 14px;
 }
 
 .stat-row {
     display: grid;
 
     grid-template-columns:
-        minmax(120px, 1fr)
-        minmax(100px, 180px)
-        25px
-        35px;
+        minmax(110px, 1fr)
+        minmax(100px, 170px)
+        30px;
 
     gap: 8px;
     align-items: center;
 
-    margin-bottom: 15px;
+    margin-bottom: 13px;
 }
 
 .stat-row label {
     font-weight: bold;
 }
 
-.stat-row input {
+.stat-row > input,
+.percent-input input {
     width: 100%;
-    padding: 11px 12px;
+    min-width: 0;
+    padding: 10px 11px;
 
     background: #17191e;
     color: white;
@@ -240,13 +321,34 @@ button:hover {
     outline: none;
 }
 
-.percent-sign {
-    color: #c8ccd3;
+#buildBCard .stat-row input:focus {
+    border-color: #65a9ff;
+}
+
+.percent-input {
+    position: relative;
+}
+
+.percent-input input {
+    padding-right: 32px;
+}
+
+.percent-input span {
+    position: absolute;
+    top: 50%;
+    right: 11px;
+
+    transform: translateY(-50%);
+
+    color: #b9bec8;
+
+    pointer-events: none;
 }
 
 .stat-status {
     text-align: center;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .stat-status.success {
@@ -257,17 +359,133 @@ button:hover {
     color: #ff7676;
 }
 
-#calculateButton {
-    display: block;
 
+/* CALCULATE BUTTONS */
+
+.calculate-button {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 12px;
+    padding: 13px;
+
+    background: #39e6ad;
+    color: #101411;
+}
+
+#calculateButtonB {
+    background: #65a9ff;
 }
 
 
 /* SCORE */
 
 .score-section {
+    margin: 20px;
+    padding: 22px;
+
+    background: #272a31;
+
+    border: 1px solid #383d47;
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.score-section h3 {
+    margin: 0 0 8px;
+}
+
+.score {
+    color: #39e6ad;
+
+    font-size: clamp(38px, 5vw, 54px);
+    font-weight: bold;
+}
+
+#scoreB {
+    color: #65a9ff;
+}
+
+.crit-used {
+    min-height: 20px;
+    margin: 8px 0 0;
+
+    color: #b9bec8;
+    font-size: 14px;
+}
+
+
+/* OCR DETAILS */
+
+.ocr-details {
+    margin: 20px;
+    padding: 14px;
+
+    background: #272a31;
+
+    border: 1px solid #383d47;
+    border-radius: 10px;
+}
+
+.ocr-details summary {
+    cursor: pointer;
+    color: #b9bec8;
+}
+
+.ocr-details pre {
+    max-height: 300px;
+    margin: 15px 0 0;
+    padding: 14px;
+
+    overflow: auto;
+    white-space: pre-wrap;
+
+    background: #15171b;
+    color: #d8dce3;
+
+    border-radius: 7px;
+
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* COMPARISON RESULT */
+
+.comparison-result {
+    margin-top: 30px;
+    padding: 30px 20px;
+
+    background: #22252b;
+
+    border: 1px solid #3a404a;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.comparison-result h2 {
+    margin: 0 0 15px;
+}
+
+.winner-text {
+    color: #39e6ad;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.difference-text {
+    margin-top: 10px;
+
+    color: #d3d7de;
+    font-size: 18px;
+}
+
+
+/* FORMULA */
+
+.formula-section {
     margin-top: 25px;
     padding: 25px;
 
@@ -279,50 +497,20 @@ button:hover {
     text-align: center;
 }
 
-.score-section h2 {
-    margin: 0 0 10px;
+.formula-section h2 {
+    margin-top: 0;
 }
 
-#score {
+.formula {
     color: #39e6ad;
 
-    font-size: 48px;
+    font-size: 20px;
     font-weight: bold;
 }
 
-
-/* OCR DETAILS */
-
-.ocr-details {
-    margin-top: 25px;
-    padding: 15px;
-
-    background: #22252b;
-
-    border: 1px solid #343841;
-    border-radius: 10px;
-}
-
-.ocr-details summary {
-    cursor: pointer;
+.formula-section > p:last-child {
+    margin-bottom: 0;
     color: #b9bec8;
-}
-
-#ocrOutput {
-    margin-top: 15px;
-    padding: 15px;
-
-    overflow-x: auto;
-    white-space: pre-wrap;
-
-    background: #15171b;
-    color: #d8dce3;
-
-    border-radius: 7px;
-
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.5;
 }
 
 
@@ -333,20 +521,48 @@ button:hover {
 }
 
 
-/* MOBILE */
+/* TABLET AND MOBILE */
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
 
-    body {
-        padding: 20px 10px;
+    .comparison-grid {
+        grid-template-columns: 1fr;
     }
 
-    h1 {
+    .app {
+        max-width: 700px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 20px 8px;
+    }
+
+    .page-header h1 {
         font-size: 30px;
     }
 
+    .paste-area,
+    .stats-section,
+    .score-section,
+    .ocr-details {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
     .stat-row {
-        grid-template-columns: 1fr 110px 20px 30px;
+        grid-template-columns:
+            minmax(95px, 1fr)
+            minmax(90px, 130px)
+            25px;
+    }
+
+    .winner-text {
+        font-size: 25px;
     }
 
 }
